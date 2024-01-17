@@ -12,7 +12,7 @@ Script that automatically downloads useful tools for system administrators.
 - OpenVPN
 
 These are tools I use a lot that not always comes pre-installed on your Linux distributions. 
-I personally like these tools, but not everyone uses. So it's not perfect for everyone!
+I personally like these tools, but not everyone does. So it's not perfect for everyone!
 If you have any suggestions to add to the script feel free to contact me on Discord: Sottoh
 
 # How to install:
