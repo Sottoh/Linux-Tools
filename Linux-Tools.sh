@@ -23,7 +23,7 @@ echo ""
 
 echo "Updating repositories."
 
-if sudo apt update &> /dev/null; then
+if sudo apt-get update &> /dev/null; then
     echo -e "   ➥\e[32mSuccessfully\e[0m updated the repositories!"
 fi
 
@@ -35,31 +35,31 @@ echo ""
 
 echo "Installing tools"
 
-if sudo sudo apt install docker.io -y &> /dev/null; then
+if sudo sudo apt-get install docker.io -y &> /dev/null; then
     echo -e "   ➥\e[32msuccessfully\e[0m installed Docker!"
 else
     echo -e "   ➥\e[31mFailed\e[0m to install Docker!"
 fi
 
-if sudo sudo apt install docker-compose -y &> /dev/null; then
+if sudo sudo apt-get install docker-compose -y &> /dev/null; then
     echo -e "   ➥\e[32msuccessfully\e[0m installed Docker-Compose!"
 else
     echo -e "   ➥\e[31mFailed\e[0m to install Docker-Compose!"
 fi
 
-if sudo sudo apt install wireshark -y &> /dev/null; then
+if sudo sudo apt-get install wireshark -y &> /dev/null; then
     echo -e "   ➥\e[32msuccessfully\e[0m installed Wireshark!"
 else
     echo -e "   ➥\e[31mFailed\e[0m to install Wireshark!"
 fi
 
-if sudo sudo apt install nmap -y &> /dev/null; then
+if sudo sudo apt-get install nmap -y &> /dev/null; then
     echo -e "   ➥\e[32msuccessfully\e[0m installed Nmap!"
 else
     echo -e "   ➥\e[31mFailed\e[0m to install Nmap!"
 fi
 
-sudo apt install openjdk-11-jdk -y &> /dev/null
+sudo apt-get install openjdk-11-jdk -y &> /dev/null
 
 sudo wget https://github.com/angryip/ipscan/releases/download/3.9.1/ipscan_3.9.1_amd64.deb &> /dev/null
 
@@ -71,19 +71,19 @@ fi
 
 sudo rm -rf ipscan_3.9.1_amd64.deb &> /dev/null
 
-if sudo sudo apt install curl -y &> /dev/null; then
+if sudo sudo apt-get install curl -y &> /dev/null; then
     echo -e "   ➥\e[32msuccessfully\e[0m installed Curl!"
 else
     echo -e "   ➥\e[31mFailed\e[0m to install Curl!"
 fi
 
-if sudo sudo apt install wireguard -y &> /dev/null; then
+if sudo sudo apt-get install wireguard -y &> /dev/null; then
     echo -e "   ➥\e[32msuccessfully\e[0m installed Wirewguard!"
 else
     echo -e "   ➥\e[31mFailed\e[0m to install Wireguard!"
 fi
 
-if sudo sudo apt install openvpn -y &> /dev/null; then
+if sudo sudo apt-get install openvpn -y &> /dev/null; then
     echo -e "   ➥\e[32msuccessfully\e[0m installed OpenVPN!"
 else
     echo -e "   ➥\e[31mFailed\e[0m to install OpenVPN!"
