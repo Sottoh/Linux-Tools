@@ -9,7 +9,7 @@ function check() {
 #Checks if user is root
 function isroot() {
     if [[ $EUID -ne 0 ]]; then
-        echo "Please try runnig the script as sudo or root or sudo"
+        echo "Please try runnig the script as sudo"
         exit 1
     fi
 
@@ -23,7 +23,7 @@ function command_exists() {
 #Checks if APT or Yay is available
 function checkpm() {
     if command_exists apt-get; then
-    echo "Detected APT package manager. Installing programs!"
+    #echo "Detected APT package manager. Installing programs!"
 
     apt_repositories
 
@@ -54,11 +54,13 @@ function apt_repositories() {
     echo -e "   ➥\e[32mSuccessfully\e[0m updated the repositories!"
     fi
 
-apt_packages
+apt_install
 }
 
 #Downloads the packages with APT
 function apt_package() {
+    echo ""
+
     local package_name=$1
     echo "Installing $package_name"
     
@@ -85,7 +87,7 @@ function apt_install() {
     )
 
     for package in "${packages[@]}"; do
-        install_package "$package"
+        apt_package "$package"
     done
 
     #Angry IP Scanner is retarded, or I am
@@ -102,6 +104,8 @@ function apt_install() {
 
 #Downloads the packages with Yay
 function yay_package() {
+    echo""
+
     local package_name=$1
     echo "Installing $package_name"
     
@@ -121,7 +125,7 @@ function yay_install() {
     )
 
     for package in "${packages[@]}"; do
-        install_package "$package"
+        yay_package "$package"
     done
 }
 
