@@ -6,10 +6,10 @@ function check() {
     checkpm
 }
 
-#Check if user is root
+#Checks if user is root
 function isroot() {
     if [[ $EUID -ne 0 ]]; then
-        echo "Please try runnig the script as sudo or root"
+        echo "Please try runnig the script as sudo or root or sudo"
         exit 1
     fi
 
@@ -20,17 +20,17 @@ function command_exists() {
     command -v "$1" >/dev/null 2>&1
 }
 
-#Check if APT or Yay is available
+#Checks if APT or Yay is available
 function checkpm() {
     if command_exists apt-get; then
-    echo "Detected APT package manager. Installing programs..."
+    echo "Detected APT package manager. Installing programs!"
 
     apt_repositories
 
     elif command_exists yay; then
-    echo "Detected Yay package manager. Installing programs..."
+    echo "Detected Yay package manager. Installing programs!"
 
-    yay_install
+    yay_package
 
     # elif command_exists rpm; then
     # echo "Detected RPM package manager. Installing programs..."
@@ -57,6 +57,7 @@ function apt_repositories() {
 apt_packages
 }
 
+#Downloads the packages with APT
 function apt_package() {
     local package_name=$1
     echo "Installing $package_name"
@@ -87,6 +88,7 @@ function apt_install() {
         install_package "$package"
     done
 
+    #Angry IP Scanner is retarded, or I am
     sudo wget https://github.com/angryip/ipscan/releases/download/3.9.1/ipscan_3.9.1_amd64.deb &> /dev/null
 
     if sudo apt-get install ./ipscan_3.9.1_amd64.deb -y &> /dev/null; then
@@ -96,6 +98,31 @@ function apt_install() {
     fi
 
     sudo rm -rf ipscan_3.9.1_amd64.deb &> /dev/null
+}
+
+#Downloads the packages with Yay
+function yay_package() {
+    local package_name=$1
+    echo "Installing $package_name"
+    
+    if yay -Syu --noconfirm "$package_name" &> /dev/null; then
+        echo -e "   ➥\e[32msuccessfully\e[0m installed $package_name!"
+    else
+        echo -e "   ➥\e[31mFailed\e[0m to install $package_name!"
+    fi
+}
+
+function yay_install() {
+    echo ""
+    echo "Installing tools"
+    
+    packages=(
+        "docker.io"
+    )
+
+    for package in "${packages[@]}"; do
+        install_package "$package"
+    done
 }
 
 check
