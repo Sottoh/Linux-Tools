@@ -1,9 +1,9 @@
 #!/bin/bash
 
-#Checks if user is root (Will check OS in future)
+#Checks if user is root and if user has apt-get or yay package manager
 function check() {
     isroot
-    checkos
+    checkpm
 }
 
 #Check if user is root
@@ -14,15 +14,38 @@ function isroot() {
     fi
 
     echo ""
+}
+
+function command_exists() {
+    command -v "$1" >/dev/null 2>&1
+}
+
+#Check if APT or Yay is available
+function checkpm() {
+    if command_exists apt-get; then
+    echo "Detected APT package manager. Installing programs..."
+
+    apt_repositories
+
+    elif command_exists yay; then
+    echo "Detected Yay package manager. Installing programs..."
+
+    yay_install
+
+    # elif command_exists rpm; then
+    # echo "Detected RPM package manager. Installing programs..."
+
+    # rpm_install
+
+    else
+    echo "No supported package manager found. This script currently supports APT on Debian-based systems and Yay on Arch-based systems."
+    exit 1
+    fi
 
 }
 
-function checkos() {
-repositories
-}
-
- #Updating repositories
-function repositories() {
+#Updates repositories for APT package manager
+function apt_repositories() {
     echo ""
 
     echo "Updating repositories."
@@ -31,10 +54,10 @@ function repositories() {
     echo -e "   ➥\e[32mSuccessfully\e[0m updated the repositories!"
     fi
 
-install
+apt_packages
 }
 
-function install_package() {
+function apt_package() {
     local package_name=$1
     echo "Installing $package_name"
     
@@ -45,7 +68,7 @@ function install_package() {
     fi
 }
 
-function install() {
+function apt_install() {
     echo ""
     echo "Installing tools"
     
