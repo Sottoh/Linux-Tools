@@ -12,8 +12,6 @@ function isroot() {
         echo "Please try runnig the script as sudo"
         exit 1
     fi
-
-    echo ""
 }
 
 function command_exists() {
@@ -73,7 +71,6 @@ function apt_package() {
 
 function apt_install() {
     echo ""
-    echo "Installing tools"
     
     packages=(
         "docker.io"
