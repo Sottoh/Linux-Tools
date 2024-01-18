@@ -121,7 +121,15 @@ function yay_install() {
     echo "Installing tools"
     
     packages=(
-        "docker.io"
+        "aur/docker-git"
+        "aur/docker-compose-git"
+        "aur/wireshark-git"
+        "extra/namp"
+        "aur/jdk11"
+        "aur/ipscan"
+        "aur/curl-git"
+        "aur/wireguard"
+        "aur/openvpn3"
     )
 
     for package in "${packages[@]}"; do
