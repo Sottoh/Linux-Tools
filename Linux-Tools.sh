@@ -26,7 +26,7 @@ function checkpm() {
     apt_repositories
 
     elif command_exists yay; then
-    echo "Detected Yay package manager. Installing programs!"
+        echo "Detected Yay package manager. Installing programs!"
 
     yay_package
 
@@ -36,8 +36,8 @@ function checkpm() {
     # rpm_install
 
     else
-    echo "No supported package manager found. This script currently supports APT on Debian-based systems and Yay on Arch-based systems."
-    exit 1
+        echo "No supported package manager found. This script currently supports APT on Debian-based systems and Yay on Arch-based systems."
+        exit 1
     fi
 
 }
@@ -49,7 +49,9 @@ function apt_repositories() {
     echo "Updating repositories."
 
     if sudo apt-get update &> /dev/null; then
-    echo -e "   ➥\e[32mSuccessfully\e[0m updated the repositories!"
+        echo -e "   ➥\e[32mSuccessfully\e[0m updated the repositories!"
+    else
+        echo -e  "   ➥\e[31mFailed\e[0m to update repositories!"
     fi
 
 apt_install
@@ -70,7 +72,6 @@ function apt_package() {
 }
 
 function apt_install() {
-    echo ""
     
     packages=(
         "docker.io"
@@ -114,8 +115,6 @@ function yay_package() {
 }
 
 function yay_install() {
-    echo ""
-    echo "Installing tools"
     
     packages=(
         "aur/docker-git"
